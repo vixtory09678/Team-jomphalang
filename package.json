@@ -1,0 +1,9 @@
+{
+  "name": "Team-jomphalang",
+  "version": "1.0.0",
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "body-parser": "~1.18.3",
+    "express": "~4.16.0"
+  }
+}
