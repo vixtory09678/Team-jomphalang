@@ -15,7 +15,10 @@ exports.predict = function(req, res, next){
 exports.getPredict = function(req, res, next){
     PeoplePredict.findOne({},function(err, data){
         if (err) return next(err);
-        if (data == undefined) return;
+        if (data == undefined){
+            res.send("data undefined");
+            return;
+        } 
         var resJson = {};
         resJson.number_of_tourist = data.people_predict;
         res.json(resJson);
