@@ -34,6 +34,13 @@ exports.getSanam = function(req, res, next){
         console.log(data);
         var jsonRes = {};
         var arrData = [];
+        console.log(data.length);
+
+        if(data.length < req.query.hours){
+            res.send("error");
+            return;
+        }
+        
         for(i in data){
             console.log(i);
             arrData[i] = data[i]["P-IN"];
