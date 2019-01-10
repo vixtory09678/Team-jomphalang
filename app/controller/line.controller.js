@@ -8,7 +8,7 @@ exports.monitor = function(req, res ,next){
     time.setHours(new Date().getHours() - 1);
     
     Sensor.find({ "$and": [
-        {Timestamp: {"$gt" : new Date(time)}},
+        {Timestamp: {"$gte" : new Date(time)}},
         {Timestamp: {"$lt" : new Date()}}
     ]
     },function(err, data){
