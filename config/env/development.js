@@ -1,5 +1,5 @@
 module.exports = {
-    mongoUri: 'mongodb://localhost/line_db',
+    mongoUri: 'mongodb://localhost/jomphalang',
     sessionSecret: "dev_key",
     debug: true,
 }
