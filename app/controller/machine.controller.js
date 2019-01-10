@@ -21,9 +21,28 @@ exports.getPredict = function(req, res, next){
     })
 }
 
+
+
 exports.getSanam = function(req, res, next){
     console.log(req.query.hours);
-    res.send("ok");
+    var time = new Date()
+    time.setHours(new Date().getHours() - req.query.hours);
+    
+    BeaconData.find({ "$and": [
+        {Timestamp: {"$gte" : new Date(time)}},
+        {Timestamp: {"$lt" : new Date()}}
+    ]},'P-IN',{},function(err, data){
+        console.log(data);
+        var jsonRes = {};
+        var arrData = [];
+        for(i in data){
+            console.log(i);
+            arrData[i] = data[i]["P-IN"];
+        }
+        console.log(arrData);
+        jsonRes.number_of_tourist = arrData;
+        res.json(jsonRes);
+    })
 }
 
 
@@ -31,7 +50,7 @@ exports.getSanam = function(req, res, next){
 exports.getDataSet = function(req, res, next){
     res.writeHead(200, {'Content-Type' : 'application/json'})
     var stream = fs.createReadStream('./dataSet.json','utf8');
-    console.log("test"+stream.read());
+    
 
     stream.pipe(res)
 }
