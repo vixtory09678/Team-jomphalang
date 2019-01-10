@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var BeaconDataSchema = new Schema({
     'P-IN': Integer,
     'P-OUT': Integer,
-    Timestamp: Timestamp
+    Timestamp: new Date()
 });
 
 mongoose.model('BeaconData', BeaconDataSchema);

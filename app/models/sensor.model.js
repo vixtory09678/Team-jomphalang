@@ -6,7 +6,7 @@ var SensorDataSchema = new Schema({
     Humidity: Double,
     'P-IN': Integer,
     'P-OUT': Integer,
-    Timestamp: Timestamp
+    Timestamp: new Date()
 });
 
 mongoose.model('SensorData', SensorDataSchema);
