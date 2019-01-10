@@ -1,4 +1,8 @@
 module.exports = function(app){
     var ml = require("../controller/machine.controller");
-    app.post('/predict', ml.predict);
+    app.route('/predict')
+        .post( ml.predict)
+        .get(ml.getPredict);
+    app.get('/getSanam',ml.getSanam);
+    app.get('/getDataSet',ml.getDataSet);
 }

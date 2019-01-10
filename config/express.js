@@ -30,8 +30,8 @@ module.exports = function() {
     require('../app/routes/receiveSensor.route')(app)
     require('../app/routes/index.route')(app)
     require('../app/routes/line.route')(app)
+    require('../app/routes/machine.route')(app)
     //-------------------
-
     return app;
 }
 

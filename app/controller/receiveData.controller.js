@@ -13,16 +13,19 @@ exports.receiveData = function(req, res, next){
 }
 
 function parseDataToJsonSensor(hexStr) {
+    console.log(hexStr);
     
     var tempHex = hexStr.substring(4,8);
     var humiHex = hexStr.substring(12,14);
     var pinHex = hexStr.substring(18,22);
     var poutHex = hexStr.substring(26,30);
 
-    var temp =  (Buffer.from(tempHex, 'hex')[0] >> 8 | Buffer.from(tempHex, 'hex')[1]) / 10.0;
+    console.log("tempHex : " + tempHex + "humiHex : " + humiHex + "pinHex : " + pinHex + "poutHex : " + poutHex);
+
+    var temp =  ((Buffer.from(tempHex, 'hex')[0] << 8) | Buffer.from(tempHex, 'hex')[1]) / 10.0;
     var humi =  Buffer.from(humiHex, 'hex')[0] * 0.5;
-    var pin =   Buffer.from(pinHex, 'hex')[0] >> 8 | Buffer.from(pinHex, 'hex')[1];
-    var pout =  Buffer.from(poutHex, 'hex')[0] >> 8 | Buffer.from(poutHex, 'hex')[1];
+    var pin =   (Buffer.from(pinHex, 'hex')[0] << 8) | Buffer.from(pinHex, 'hex')[1];
+    var pout =  (Buffer.from(poutHex, 'hex')[0] << 8) | Buffer.from(poutHex, 'hex')[1];
 
     var sensorData = {};
     sensorData.Temperature = temp;

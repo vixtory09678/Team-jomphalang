@@ -12,6 +12,7 @@ module.exports = function() {
     // require Model hear
     require('../app/models/beacon.model');
     require('../app/models/sensor.model');
+    require('../app/models/people_predict.model');
     // ==================
 
     return db;
