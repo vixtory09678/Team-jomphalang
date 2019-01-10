@@ -26,8 +26,10 @@ module.exports = function() {
     app.use(bodyParser.json());
 
     // require routes hear
-    require('../app/routes/data.route')(app)
-    require('../app/routes/user.route')(app)
+    require('../app/routes/beacon.route')(app)
+    require('../app/routes/receiveSensor.route')(app)
+    require('../app/routes/index.route')(app)
+    require('../app/routes/line.route')(app)
     //-------------------
 
     return app;

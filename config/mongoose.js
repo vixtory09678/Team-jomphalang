@@ -6,8 +6,8 @@ module.exports = function() {
     var db = mongoose.connect(config.mongoUri);
 
     // require Model hear
-    require('../app/models/data.model');
-    require('../app/models/user.model');
+    require('../app/models/beacon.model');
+    require('../app/models/sensor.model');
     // ==================
 
     return db;
