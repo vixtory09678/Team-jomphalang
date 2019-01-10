@@ -3,7 +3,11 @@ var config = require('./config');
 
 module.exports = function() {
     mongoose.set('debug', config.debug);
-    var db = mongoose.connect(config.mongoUri);
+    const options = {
+        user: 'admin',
+        pass: 'jomphalang'
+    };
+    var db = mongoose.connect(config.mongoUri,options);
 
     // require Model hear
     require('../app/models/beacon.model');
