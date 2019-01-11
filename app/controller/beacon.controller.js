@@ -22,7 +22,7 @@ exports.beacon = function (req, res, next) {
         json["P-OUT"] += 1;
     }
     console.log(json);
-    res.send("ok");
+    res.send(json);
 }
 
 exports.currentUser = function(req, res){
