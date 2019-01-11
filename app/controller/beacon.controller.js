@@ -24,3 +24,8 @@ exports.beacon = function (req, res, next) {
     console.log(json);
     res.send("ok");
 }
+
+exports.currentUser = function(req, res){
+    console.log(json);
+    res.json(json);
+}
