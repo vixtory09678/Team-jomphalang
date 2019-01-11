@@ -13,16 +13,29 @@ exports.predict = function(req, res, next){
 }
 
 exports.getPredict = function(req, res, next){
-    PeoplePredict.findOne({},function(err, data){
+    PeoplePredict.find({}).sort({ _id: -1 }).limit(1).exec(function(err, data){
         if (err) return next(err);
-        if (data == undefined){
+
+        if (data.length == 0){
             res.send("data undefined");
             return;
-        } 
+        }
+        
         var resJson = {};
-        resJson.number_of_tourist = data.people_predict;
+        resJson.number_of_tourist = data[0].people_predict;
         res.json(resJson);
     })
+    // PeoplePredict.findOne({},function(err, data){
+    //     if (err) return next(err);
+    //     if (data == undefined){
+    //         res.send("data undefined");
+    //         return;
+    //     }
+    //     console.log(data);
+    //     var resJson = {};
+    //     resJson.number_of_tourist = data.people_predict;
+    //     res.json(resJson);
+    // })
 }
 
 exports.getSanam = function(req, res, next){
@@ -37,7 +50,6 @@ exports.getSanam = function(req, res, next){
         console.log(data);
         var jsonRes = {};
         var arrData = [];
-        console.log(data.length);
 
         if(data.length < req.query.hours){
             res.send("error");
@@ -45,7 +57,6 @@ exports.getSanam = function(req, res, next){
         }
         
         for(i in data){
-            console.log(i);
             arrData[i] = data[i]["P-IN"];
         }
         console.log(arrData);
@@ -54,12 +65,8 @@ exports.getSanam = function(req, res, next){
     })
 }
 
-
-
 exports.getDataSet = function(req, res, next){
     res.writeHead(200, {'Content-Type' : 'application/json'})
     var stream = fs.createReadStream('./dataSet.json','utf8');
-    
-
     stream.pipe(res)
 }
