@@ -46,7 +46,7 @@ exports.getSanam = function(req, res, next){
         
         for(i in data){
             console.log(i);
-            arrData[i] = data[(data.length-1) - i]["P-IN"];
+            arrData[i] = data[i]["P-IN"];
         }
         console.log(arrData);
         jsonRes.number_of_tourist = arrData;
